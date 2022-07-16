@@ -17,6 +17,7 @@ label start:
 
     scene bg padrao
 
+    # comentários que estavam na versão inicial do renpy:
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
@@ -32,20 +33,20 @@ label start:
     "Alex foca, e se prepara para dar o seu chute..."
 
     show intro cena12
-    with hpunch
+    with hpunch #"hpunch" faz com que a tela trema horizontalmente
     "!"
 
     show intro cena13
     "Todos olham atentamente para a direção onde a bola está indo."
     show intro cena14
     "E sua trajetória vai diretamente para..."
-    hide intro cena11
-    hide intro cena12
-    hide intro cena13
+    hide intro cena11 #todos esses "hide" são para limpar as imagens que foram apresentadas
+    hide intro cena12 #na tela, para evitar sobreposição
+    hide intro cena13 
     hide intro cena14
 
     show intro cena21
-    with vpunch
+    with vpunch #"vpunch" faz com que a tela trema verticalmente
     "!"
     show intro cena22
     with dissolve
@@ -87,10 +88,16 @@ label start:
     
     hide intro cena31
     hide intro cena32
-    hide intro cena33
+    hide intro cena33 
+
+    window hide #retira a caixa de diálogo que aparece embaixo, permitindo que o jogador veja o desenho completo
 
     show intro cena41
     with dissolve
+
+    pause #pausa a retirada de caixa de diálogo, a pausa é "um clique"
+
+    window show #faz a caixa de diálogo retornar
     "Alex" "Devo abrir?"
     "Alex" "Vejamos..."
 
@@ -115,16 +122,23 @@ label start:
     hide intro cena42
     hide intro cena43
     hide intro cena44
+    window hide
     with fade
     
+    pause
     show intro cena51
     with dissolve
-    ""
+    
+    pause
     show intro cena52
     with dissolve
-    ""
+    
+    pause
     show intro cena53
     with dissolve
+    pause
+    
+    window show
     "Preparada, Alex anda até a entrada da mansão."
     "..."
     hide intro cena51
@@ -136,8 +150,13 @@ label start:
     "- Mansão Macambira -"
     with fade
     with dissolve
+
+    window hide
     scene bg entrada1
+    with dissolve
     "Alex" "A entrada está trancada."
+    window hide
+    
     call screen livingRoom
  
 # Sala de estar
