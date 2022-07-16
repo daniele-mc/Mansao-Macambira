@@ -165,7 +165,7 @@ screen livingRoom():
     imagebutton:
         idle "Cenários/Sala/bg planta vazio.png"
         hover "Cenários/Sala/bg planta.png"
-        action Jump('plant')
+        action Jump('plant')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         xpos 109 ypos 56
     imagebutton:
         idle "Cenários/Sala/bg capivara vazio.png"
@@ -187,7 +187,12 @@ label capybara:
     call screen livingRoom
 
 label cacti:
-    "Alex" "Mandacaru (espeta, é um cacto)"
+    show alex neutra at left
+    "Alex" "A escada está quebrada e ainda tem esses- "
+    show alex pensativa at left
+    "Alex" "Acho que são mandacarus... "
+    "Alex" "De qualquer jeito, não tem como subir por aqui!"
+    hide alex pensativa
     call screen livingRoom
 # label exitGame:
 #     return
