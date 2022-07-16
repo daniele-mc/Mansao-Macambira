@@ -3,6 +3,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
+
 define a = Character('Alex', color="#c8ffc8") #define abreviação e cores para personagem
 
 # The game starts here.
@@ -140,6 +141,13 @@ label start:
     
     window show
     "Preparada, Alex anda até a entrada da mansão."
+    "Antes de entrar, ela observa a janela quebrada à esquerda."
+    "Alex" "Foi ali onde eu acertei a bola, comparando com onde era o gol... "
+    "Alex" "Eu devia melhorar a mira."
+
+    "Reunindo confiança, ela decide abrir a porta - percebendo que ela já estava aberta."
+    "."
+    ".."
     "..."
     hide intro cena51
     hide intro cena52
@@ -151,12 +159,122 @@ label start:
     with fade
     with dissolve
 
+    show alex surpresa at left 
+    with hpunch
+    "Alex" "!"
+
+    "Alex toma um leve susto com o barulho da porta e olha para trás rapidamente- "
+
+    show alex neutra at left 
+    "Alex" "Ninguém... Parece até filme de terror."
+    show alex incomodada at left
+    "Alex" "Deve ter sido o vento..."
+    show alex pensativa at left
+    "Alex" "Típico, olha, gente, se tiveram tanto trabalho para me fazer pegar a bola- "
+    show alex incomodada at left
+    "Alex" "ao menos sejam originais!"
+    hide alex incomodada
+
+    "A sala, um pouco escura com apenas a pouca luz do sol de fim de tarde, é então iluminada quando um lustre pendurado no teto se acende sozinho."
+    "Como se a própria casa estivesse voltando à vida..."
+
     window hide
+    scene bg entrada1 #muda o plano de fundo
+    with dissolve
+    pause
+
+    show alex neutra at left
+    "Alex" "Nossa, como este lugar está sujo, tá até com cara de quem não pisa aqui há anos."
+    hide alex neutra at left
+    window hide
+
+    "Alex observa o ambiente em sua volta, dando uma olhada suspeita em todo o espaço com um olhar de atenção."
+    "Ao virar-se para a esquerda, ela percebe algo diferente:"
+    scene bg entrada2 #muda o plano de fundo
+    with dissolve
+    "Uma porta." 
+    "Voltando para a sua frente- "
+    scene bg entrada1 #mudança de plano de fundo
+    with dissolve
+    "Alex nota uma escada, a qual está quebrada, com plantas e raízes crescendo aos arredores de onde seria a passagem original."
+    "Impedindo a ida para os andares de cima-"
+    scene bg entrada4
+    with dissolve
+    "À direita, está uma mesa de madeira não tão grande."
+    "Algo em cima dela chama a atenção de Alex: uma vela acesa cujo fogo fica diminuindo e aumentando espontaneamente, "
+    "Como se estivesse piscando."
+    scene bg entrada3
+    with dissolve
+    "Voltando para a entrada, Alex vê a porta pela qual ela entrou, e decide verificar algo nela- "
+    "Alex coloca as suas mãos na maçaneta da porta-"
+    scene bg entrada3
+    with hpunch
+    "Alex" "!"
+    "Então confirmando que a porta que se fechou não abre mais..."
+    show alex incomodada at left
+    "Alex" "Que estranho, parece que não vai abrir mesmo. Está trancada."
+    show alex neutra at left
+    "Alex" "Mais estranho ainda é essa porta não ter lugar para colocar chave... E nenhum sinal da bola por aqui nesta sala."
+    hide alex neutra
+    "Alex se dirige até a porta que encontrou anteriormente e checa a maçaneta, verificando se a porta também estava trancada."
+    hide window
+    scene bg entrada2 #mudança de cenário
+    with dissolve
+    pause
+    scene bg entrada2
+    with hpunch
+    pause
+    show alex pensativa at left
+    "Alex" "Pelo visto portas abrirem é algo raro por aqui. Pelo menos esta tem onde pôr chave, e deve ser uma chave bem grande."
+    "Alex" "Pois a entrada na fechadura parece um pouco maior que o normal. Talvez seja algo da época..."
+    hide alex pensativa
+    "O espaço da fechadura para colocar a chave é, de fato, bem maior do que o que normalmente se encontra em portas normais."
+    "Estranho."
+    hide window #adeus janela de diálogo
+    scene bg entrada1 #mudança de cena
+    with dissolve
+    pause
+    "Voltando para a parede que ela viu ao entrar na casa, Alex novamente observa a escada quebrada na sala."
+    show alex neutra at left
+    "Alex" "Nem imagino o que deva ter acontecido para que a escada fosse quebrada desse jeito."
+    "Alex" "Devem ter sido essas raízes ou plantas que cresceram por perto..."
+    show alex pensativa at left
+    "Alex" "Aliás, não é sobre esse tipo de planta que estávamos estudando na aula de biologia passada? Estranho..."
+    hide alex pensativa
+    "Pensando em coisas que parecem estranhas, Alex lembra-se da vela que parecia que nunca se apagava."
+    
+    hide window
+    scene bg entrada4
+    with dissolve
+    pause
+    show alex neutra at left
+    "Alex" "Engraçado essa vela que quase apaga mas sua luz volta,"
+    show alex pensativa at left
+    "Alex" "deve ser o vento, apesar de eu não estar sentindo nenhum aqui dentro."
+    hide alex pensativa
+    "Ela então percebe algo não usual, ao lado da vela que chamou sua atenção anteriormente estava uma chave dourada brilhante."
+    "A qual era muito maior do que chaves comuns, e também se encontrava em cima de alguns papéis que também pareciam destacados no ambiente."
+    show alex neutra at left 
+    "Alex" "Essa chave é muito grande para uma fechadura."
+    show alex confiante at left
+    "Alex" "Já sei, ela deve ser da outra porta que está trancada!"
+    hide alex confiante
+    "Ao pegar a chave, Alex observa que os papéis onde a chave estava em cima possuíam alguma coisa escrita neles e então decide os ler."
+    "O conteúdo dos papéis pode ser resumido em 'utilize o mouse para para selecionar e clicar em objetos com o botão esquerdo',"
+    "'lembre-se de salvar seu progresso no botão 'save' localizado na aba inferior da tela frequentemente e, por fim, nesta aventura é importante ter espírito de explorador!'"
+    "'Portanto, nunca se esqueça de explorar e procurar objetos que estão ao seu redor, nunca se sabe que tipo de informações poderão estar escondidas neles'"
+    "'a menos que decida interagir! Não custa nada ao menos tentar'... "
+    show alex neutra at left 
+    "Alex" "Ué?... Coisas estranhas para escrever em um papel e deixar na sala de estar."
+    "Alex" "Enfim, acho que agora já sei o que preciso fazer por aqui."
+    show alex confiante at left
+    "Alex" "Hora de explorar!"
+    hide alex confiante
+    hide window
     scene bg entrada1
     with dissolve
-    "Alex" "A entrada está trancada."
-    window hide
-    
+    pause
+
     call screen livingRoom
  
 # Sala de estar
@@ -179,11 +297,21 @@ screen livingRoom():
         xpos 500 ypos 0
     
 label plant:
+    show alex confiante at left
     "Alex" "Aha! Comigo ninguém pode!..."
+    show alex neutra at left
+    "Alex" "é o nome da planta. Ou pelo menos é o que meus pais vivem dizendo."
+    show alex pensativa at left
+    "Alex" "Ela é uma planta venenosa, eu acho."
+    hide alex pensativa
     call screen livingRoom
     
 label capybara:
+    show alex surpresa at left
     "Alex" "Ah, olha só! É uma Hydrochoerus hydrochaeris!..."
+    show alex incomodada at left
+    "Alex" "HM, quer dizer, é apenas uma pelúcia de capivara..."
+    hide alex incomodada
     call screen livingRoom
 
 label cacti:
