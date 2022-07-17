@@ -202,10 +202,13 @@ label start:
     "À direita, está uma mesa de madeira não tão grande."
     "Algo em cima dela chama a atenção de Alex: uma vela acesa cujo fogo fica diminuindo e aumentando espontaneamente, "
     "Como se estivesse piscando."
+    hide window
     scene bg entrada3
     with dissolve
+    pause
     "Voltando para a entrada, Alex vê a porta pela qual ela entrou, e decide verificar algo nela- "
     "Alex coloca as suas mãos na maçaneta da porta-"
+    hide window
     scene bg entrada3
     with hpunch
     "Alex" "!"
@@ -360,7 +363,14 @@ label salaSaida:
     with hpunch
     "- CLACK! -"
     "Porta aberta."
+    hide window
+    scene bg padrao
+    with fade
+    pause
 
+    "Ao abrir a porta, as luzes, como na sala anterior, também estavam desligadas."
+    "Mas não demorou muito tempo para que as luzes daquele cômodo começassem a se ligar aos poucos, como se a própria casa estivesse acordando de um sono profundo... "
+    
 
 label exitGame:
      return
