@@ -1,8 +1,7 @@
-﻿# The script of the game goes in this file.
+# The script of the game goes in this file.
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-
 
 define a = Character('Alex', color="#c8ffc8") #define abreviação e cores para personagem
 
@@ -244,7 +243,7 @@ label start:
     "Pensando em coisas que parecem estranhas, Alex lembra-se da vela que parecia que nunca se apagava."
     
     hide window
-    scene bg entrada4
+    scene bg entrada4chave #novo cenário apresentando a chave misteriosamente !!!!
     with dissolve
     pause
     show alex neutra at left
@@ -254,11 +253,21 @@ label start:
     hide alex pensativa
     "Ela então percebe algo não usual, ao lado da vela que chamou sua atenção anteriormente estava uma chave dourada brilhante."
     "A qual era muito maior do que chaves comuns, e também se encontrava em cima de alguns papéis que também pareciam destacados no ambiente."
-    show alex neutra at left 
+    show alex pensativa at left
+    "Alex" "Estranho... Isso estava aqui antes?"
+    show item chave
+    show alex neutra at left
+    with dissolve
     "Alex" "Essa chave é muito grande para uma fechadura."
     show alex confiante at left
     "Alex" "Já sei, ela deve ser da outra porta que está trancada!"
     hide alex confiante
+    hide item chave
+    with dissolve 
+    hide window 
+    scene bg entrada4 #muda para o cenário que não tinha a chave
+    pause 
+
     "Ao pegar a chave, Alex observa que os papéis onde a chave estava em cima possuíam alguma coisa escrita neles e então decide os ler."
     "O conteúdo dos papéis pode ser resumido em 'utilize o mouse para para selecionar e clicar em objetos com o botão esquerdo',"
     "'lembre-se de salvar seu progresso no botão 'save' localizado na aba inferior da tela frequentemente e, por fim, nesta aventura é importante ter espírito de explorador!'"
@@ -275,7 +284,19 @@ label start:
     with dissolve
     pause
 
-    call screen livingRoom
+    "E agora?"
+
+menu: 
+    
+    "Explorar esta área da sala":
+        call screen livingRoom
+
+    "Checar área à esquerda":
+        jump salaSaida
+
+    "Sair do jogo":
+        jump exitGame
+
  
 # Sala de estar
 screen livingRoom():
@@ -322,5 +343,24 @@ label cacti:
     "Alex" "De qualquer jeito, não tem como subir por aqui!"
     hide alex pensativa
     call screen livingRoom
-# label exitGame:
-#     return
+
+label salaSaida:
+    hide window
+    scene bg entrada2
+    with dissolve
+    pause
+
+    "Lembrada da chave que acabou de adquirir, Alex volta à porta com a fechadura peculiar que havia encontrado mais cedo."
+    show alex confiante at left
+    "Alex" "Certo! Agora que eu tenho a chave com certeza conseguirei abrir esta porta estranha."
+    hide alex confiante
+    "Alex então tira a chave que tinha guardado em sua bolsa e a coloca na fechadura da porta."
+    "Ao virar a chave ela- "
+    scene bg entrada2
+    with hpunch
+    "- CLACK! -"
+    "Porta aberta."
+
+
+label exitGame:
+     return
