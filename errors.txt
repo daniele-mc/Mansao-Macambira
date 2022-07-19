@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 441: u'hide' is not a keyword argument or valid child for the screen statement.
+    hide "Cenários/Sala número 1/bg sala1 itens.png"
+        ^
+
+Ren'Py Version: Ren'Py 7.4.11.2266u
+Tue Jul 19 01:24:30 2022
