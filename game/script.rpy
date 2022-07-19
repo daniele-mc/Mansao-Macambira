@@ -385,6 +385,16 @@ label salaSaida:
     "Curiosa, Alex então decide explorar a sala."
     call screen escritorio
 
+label plantaMorta:
+    if (explorarSamambaia and explorarArvoreNatal and explorarBonsai and explorarMusgo):
+        scene bg sala1 vazio
+    show alex incomodada at left
+    "Alex" "Tem uma planta morta do lado da cômoda."
+    show alex pensativa at left
+    "Alex" "Vou deixar ela lá, porque não sei o que fazer com ela..."
+    hide alex pensativa
+    call screen escritorio
+
 label samambaia:
     show alex incomodada at left
     "Alex" "A estante está cheia de livros"
@@ -429,24 +439,10 @@ label musgo:
     $ explorarMusgo = True
     call screen escritorio
 
-label plantaMorta:
-    show alex incomodada at left
-    "Alex" "Tem uma planta morta do lado da cômoda."
-    show alex pensativa at left
-    "Alex" "Vou deixar ela lá, porque não sei o que fazer com ela..."
-    hide alex pensativa
-    call screen escritorio
-
 screen escritorio():
     if (explorarSamambaia and explorarArvoreNatal and explorarBonsai and explorarMusgo):
         add "Cenários/Sala número 1/bg sala1 vazio.png"
-        imagebutton:
-            idle "Cenários/Sala número 1/itens/bg sala1 planta morta vazio.png"
-            hover "Cenários/Sala número 1/itens/bg sala1 planta morta.png"
-            action Jump('plantaMorta')
-            xpos 886 ypos 137
     else:
-        # add "Cenários/Sala número 1/bg sala1 vazio.png"
         add "Cenários/Sala número 1/bg sala1 itens.png"
         imagebutton:
             idle "Cenários/Sala número 1/itens/bg sala1 samambaia vazio.png"
@@ -468,11 +464,11 @@ screen escritorio():
             hover "Cenários/Sala número 1/itens/bg sala1 musgo.png"
             action Jump('musgo')
             xpos 626 ypos 36
-        imagebutton:
-            idle "Cenários/Sala número 1/itens/bg sala1 planta morta vazio.png"
-            hover "Cenários/Sala número 1/itens/bg sala1 planta morta.png"
-            action Jump('plantaMorta')
-            xpos 886 ypos 137
+    imagebutton:
+        idle "Cenários/Sala número 1/itens/bg sala1 planta morta vazio.png"
+        hover "Cenários/Sala número 1/itens/bg sala1 planta morta.png"
+        action Jump('plantaMorta')
+        xpos 886 ypos 137
 
 
 label exitGame:
