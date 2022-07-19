@@ -409,7 +409,9 @@ label samambaia:
     show alex neutra at left
     "Alex" "Olha só, há uma samambaia,"
     show alex pensativa at left 
-    "Alex" "eu acho que ela é uma planta bonita com folhas legais, porém não tem flores."
+    "Alex" "Eu acho que ela é uma planta bonita com folhas legais, porém não tem flores."
+    "Alex" "O nome de plantas assim me lembra pterodátilos... Mas eles são dinossauros então o nome deveria ser outro"
+    "Alex" "Era alguma coisa com P..."
     hide alex pensativa
     show item samambaiaobjeto
     "Alex pegou a planta que encontrou na estante e a guardou em sua bolsa. Samambaia adicionada ao inventário!"
@@ -575,7 +577,7 @@ menu: #menu que é mencionado acima uhu
         hide alex neutra 
         jump escritorioExplorando_1
 
-    "Checar a próxima parede": #pula para a próxima etapa 
+    "Checar a próxima parte da sala": #pula para a próxima etapa 
         jump excritorioExplorar_2
 
     "Voltar para o corredor anterior": #opção de tentar voltar, mas você meio que não tem motivo para voltar
@@ -584,20 +586,257 @@ menu: #menu que é mencionado acima uhu
         "Alex" "Ué, no que eu estou pensando? Não tem nada para checar naquele corredor"
         jump escritorioExplorando_1
 
-label excritorioExplorar_2: 
+label excritorioExplorar_2: #cena dela falando sobre aquela parede com as plantas para classificar depois
     scene bg sala2 padrao
     hide window 
     with fade 
     pause 
 
-    "Ao percorrer um pouco mais esse cômodo, Alex se depara com outro cenário que logo chama a sua atenção pela presença de uma planta familiar."
+    "Ao percorrer um pouco mais esse cômodo, Alex se depara com outro cenário que logo chama a sua atenção pela presença de uma planta familiar: o Mandacaru."
+    "Nos encontramos novamente, ó, espinhoso cacto nativo da região Nordeste brasileira..."
 
-    show alex surpresa at left 
+    show alex surpresa at left
+    with vpunch
     "Alex" "UAU, esses são os mesmos cactos lá do início...?"
     show alex pensativa at left 
-    "Alex" "Então significa que esta sala dá uma volta por trás daquela outra?"
+    with dissolve
+    "Alex" "Então significa que esta sala dá uma volta por trás daquela outra? Os cactos atravessaram a parede?"
     show alex neutra at left 
     "Alex" "Não fazia ideia que isso poderia acontecer, talvez as plantas daqui sejam diferentes por causa de algum químico que deixou esses mandacarus mais fortes..."
+    hide alex neutra 
+    "Ao observar melhor a parede, ela nota algo mais estranho sobre ela"
+    show alex neutra at left 
+    "Alex" "É impressão minha ou esses cactos estão atravessando um quadro? Parece o busto de alguém."
+    show alex pensativa at left 
+    "Alex" "Mas o rosto parece ter sido completamente destruído pelos mandacarus e tem uma plaquinha aqui embaixo toda desgastada..."
+    show alex incomodada at left 
+    "Alex" "Argh, não consigo ler, ela está arranhada demais para eu entender alguma coisa... "
+    "Alex" "Isso tudo só fica cada vez mais e mais estranho."
+    hide alex incomodada 
+
+    "Observando o ambiente, Alex repara que ao fundo desta sala existe mais uma porta."
+    "Porém, esta, como a da sala anterior quando ela chegou na mansão, também está trancada..."
+
+    show alex incomodada at left 
+    "Alex" "Nossa... E essa porta dessa vez parece que nem fechadura tem, como é que eu vou sair daqui?!"
+    show alex pensativa at left 
+    "Alex" "Talvez exista algum tipo de dispositivo? Passagem secreta? Isso acontece em filmes, né?"
+    show alex neutra at left 
+    "Alex" "Vejamos... O que temos aqui neste canto? Temos uma mesa, alguns marcadores A, B, G e P, com letras estranhas e-"
+    show alex incomodada at left 
+    "Alex" "Ignorando o quadro tomado pelas plantas-"
+    show alex neutra at left 
+    "Alex" "Uma nota na parede? Ela diz 'Por favor mantenha as Plantas em suas Classificações corretas, agradecemos pela compreensão.'"
+    show alex pensativa at left 
+    "Alex" "Isto com certeza não é um museu... O que isso pode significar?"
+    "Alex" "Plantas..."
+    "Alex" "Classificações..."
+    "Alex" "Onde é que eu ouvi algo parecido com isso?"
+    show alex confiante at left 
+    with vpunch 
+    "Alex" "Aha! Já sei! Deve estar falando das plantas que eu acabei de coletar daquela outra parede!"
+    "Alex" "Parece que alguém as tirou de seu lugar e isso acionou o sistema de trava de porta... !"
+    "Alex" "O que significa que..."
+    show alex incomodada at left 
+    with vpunch
+    "Alex" "Infelizmente... Não irei sair daqui com um novo bonsai novinho em folha como lembrança... " #adeus... triste, chore se você chorou
+    show alex confiante at left 
+    "Alex" "Mas tudo bem! Dessa vez eu vou encontrar a saída."
+
+label escritorioExplorando_2:
+    scene bg sala2 padrao #criando uma introdução para o começo do puzzle! Hora do quiz, show do milhão, show de milhões, milhos gigantes
+    hide window
+    with dissolve 
+    show alex pensativa at left 
+    "Alex" "Preciso retornar cada uma das amostras para sua marcação correta."
+    "Alex" "As marcações são 'A', 'B', 'G' e 'P'..."
+
+menu: 
+    "Inserir o musgo na classificação 'A'":
+        show item musgoobjeto
+        with dissolve 
+        "Alex colocou a foto de musgo no marcador 'A'."
+        jump escritorioErro_A
+
+    "Inserir a samambaia na classificação 'A'.":
+        show item samambaiaobjeto
+        with dissolve
+        "Alex colocou a samambaia no marcador 'A'."
+        jump escritorioErro_A
+
+    "Inserir a árvore de natal (do lixo) na classificação 'A'":
+        show item arvorenatalobjeto 
+        with dissolve 
+        show alex incomodada 
+        "Alex" "Ainda não acredito que eu tirei isso do LIXO."
+        hide alex incomodada 
+        "Alex colocou a árvore de natal no marcador 'A'."
+        jump escritorioErro_A
+
+    "Inserir o bonsai na classificação 'A'":
+        show item bonsaiobjeto 
+        with dissolve 
+        show alex neutra at left 
+        "Alex" "Bem... Parece que não tenho escolha-"
+        show alex incomodada at left 
+        "Alex" "Vou ter que me despedir de meu querido bonsai, estou até emocionada... *sniff*"
+        hide alex incomodada 
+        "Alex coloca o bonsai no marcador 'A' cuidadosamente."
+        "Sentiremos muita falta de você, senhora bonsai, adeus... até mais ver... "
+        jump escritorioAcerto_A #vai para a tela de acerto da primeira planta!
+
+label escritorioErro_A: #diálogo de quando você erra a primeira pergunta do quiz
+    scene bg sala2 padrao 
+    with hpunch
+    hide window 
+    pause 
+    show alex surpresa at left 
+    "Alex" "?!"
+    show alex incomodada at left 
+    "Alex" "Parece que não foi agora que eu acertei... Devo ter esquecido de alguma coisa que eu li mais cedo"
+    show alex pensativa at left 
+    "Alex" "Eu lembro que angiospermas são plantas capazes de produzir flores e frutas, então o bonsai... "
+    show alex confiante at left 
+    with hpunch
+    "Alex" "Vamos tentar reorganizar as plantas de novo!"
+    jump escritorioExplorando_2 #isso traz você de volta para o início da pergunta, mas de um jeito que não começa tudo de novo
+
+label escritorioAcerto_A: #acerto da primeira pergunta do quiz
+    scene bg sala2 acerto1
+    with fade 
+    show alex surpresa at left 
+    "Alex" "Nossa, a planta encaixou direitinho ali... Este é realmente o lugar dela."
+    show alex neutra at left 
+    "Alex" "Agora só preciso colocar as outras três em seus devidos lugares."
+    show alex confiante 
+    with hpunch
+    "Alex" "Vai ser fácil com todos os conhecimentos de biologia que absorvi por... osmose!"
+
+label escritorioExplorando_3: #progressão do jogo / para onde retorna se responder errado
+    scene bg sala2 acerto1 
+    with fade
+    hide window 
+    pause
+    show alex pensativa at left 
+    with dissolve 
+    "Alex" "Qual das plantas que tenho em minhas mãos se encaixaria na classificação 'B'?"
+    hide alex pensativa 
+
+menu: #segunda hora do quiz
+    "Colocar foto de musgo no marcador 'B'":
+        show item musgoobjeto
+        with dissolve 
+        "Alex retira a foto de musgo de sua bolsa e a insere no pedestal com a letra 'B'."
+        show alex neutra at left 
+        "Alex" "Espero que isso dê certo."
+        show alex pensativa at left 
+        "Alex" "Esse 'B' só pode significar 'Briófita', né?"
+        "Alex" "E eu lembro de ter lido que esse musgo era uma briófita, então..."
+        hide alex pensativa
+        jump escritorioAcerto_B #resposta correta!
+
+    "Colocar samambaia no marcador 'B'":
+        show item samambaiaobjeto 
+        with dissolve 
+        "Alex retira a samambaia de sua bolsa e a insere no pedestal com a letra 'B'."
+        jump escritorioErro_B #resposta errada, vai para a parte de relembrar oq era pra fazer
+
+    "Colocar árvore de natal no marcador 'B'":
+        show item arvorenatalobjeto 
+        with dissolve 
+        "Alex retira a árvore de natal (de plástico) de sua bolsa e a insere no pedestal com a letra 'B'."
+        jump escritorioErro_B #resposta errada
+
+label escritorioErro_B: #parte de texto da resposta errada de lembrar oq era pra fazer aqui
+    scene bg sala2 acerto1 
+    with hpunch
+    hide window 
+    pause 
+    show alex surpresa at left 
+    "Alex" "...?!"
+    show alex pensativa at left 
+    "Alex" "Bem... esta classificação é de uma planta 'B', uma briófita..."
+    "Alex" "Um tipo de planta que parece com um tapete verde e não possui estruturas vasculares como... ?"
+    hide alex pensativa 
+    jump escritorioExplorando_3
+
+label escritorioAcerto_B: #resposta certa
+    scene bg sala2 acerto2
+    with fade
+    show alex confiante at left 
+    with hpunch 
+    "Alex" "Olha só! Acertei! Já foram metade das plantas, Faltam apenas duas..."
+    show alex surpresa at left 
+    "Alex" "E eu finalmente conseguirei sair daqui!"
+    hide alex surpresa 
+    "Checando a sua bolsa, Alex percebe que existem apenas mais duas plantas para colocar na mesa."
+    "E então decide que quando acertar o lugar correto da próxima planta, só precisará colocar a última em seu devido lugar."
+
+    show alex confiante at left 
+    with hpunch 
+    "Alex" "Está tudo bem! Já consigo ver a saída desse lugar! Só mais duas plantas e pronto"
+
+label escritorioExplorando_4: #onde volta para o início da próxima questão do quiz
+    scene bg sala2 acerto2
+    with fade
+    hide window 
+    show alex pensativa at left 
+    with dissolve
+    "Alex" "Só preciso pensar em qual planta posso colocar na classificação 'G'."
+    hide alex pensativa
+
+menu: 
+    "Colocar a árvore de natal (tirada do lixo) na plataforma com a letra 'G'.": #resposta certa
+        show item arvorenatalobjeto 
+        with dissolve 
+        "Alex retira a árvore de natal de plástico que previamente estava em uma lata de lixo e a põe em cima da mesa no marcador 'G'."
+        show alex incomodada at left 
+        "Alex" "Finalmente não estarei mais carregando uma planta que achei numa lixeira de mansão abandonada... Ufa."
+        jump escritorioAcerto_G
+
+    "Colocar a samambaia na plataforma com a letra 'G'.": #resposta errada 
+        show item samambaiaobjeto 
+        with dissolve 
+        "Alex retira a samambaia de sua bolsa e a põe em cima da mesa no marcador 'G'."
+        jump escritorioErro_G #pula para o diálogo de quando ocorre um erro
+
+label escritorioErro_G: #diálogo de erro tanto para lembrar sobre gimnospermas e pteridófitas
+    scene bg sala2 acerto2
+    with hpunch 
+    hide window 
+    pause
+    show alex surpresa at left 
+    "Alex" "Ué? Valha?"
+    show alex incomodada at left 
+    "Alex" "Parece que eu me emocionei tanto com a ideia de sair daqui que acabei me confundindo..."
+    "Alex" "Preciso manter o foco!"
+    show alex neutra at left 
+    "Alex" "Esta marcação é de uma planta do tipo 'G', para gimnospermas, eu acho... E a samambaia é uma planta do tipo..."
+    show alex pensativa at left
+    with hpunch 
+    "Alex" "Pterodátilo?"
+    "Alex" "Ok, isso não é um tipo de planta... era outra palavra."
+    jump escritorioExplorando_4
+
+label escritorioAcerto_G: #resposta certa! mudança de cenário
+    scene bg sala2 acerto3
+    hide window 
+    with fade 
+    pause 
+
+    show alex confiante at left 
+    "Alex" "Isso! Agora só falta mais um detalhezinho... "
+    hide alex confiante
+    "Alex então retira a última amostra de planta que havia guardado em sua bolsa e a coloca em seu devido lugar."
+    "Assim, colocando a samambaia no marcador com a letra 'P' - de planta Pteridófita."
+    scene bg sala2 correto #mudando a sala para ser o certo com todas o lugar 
+    with fade 
+
+    show alex confiante at left 
+    "Alex" "E pronto! Todas elas devem estar em suas devidas classificações agora."
+    "Alex" "Angiosperma, Briófita, Gimnosperma e Pteridófita!"
+    show alex incomodada at left 
+    "Alex" "São tantos nomes difíceis para poucas plantas... Que mundo cruel."
 
 label exitGame:
     return
