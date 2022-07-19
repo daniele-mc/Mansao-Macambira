@@ -1,15 +1,10 @@
-init python:
-    explorarSamambaia = False
-    explorarArvoreNatal = False
-    explorarBonsai = False
-    explorarMusgo = False
 # The script of the game goes in this file.
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
 define a = Character('Alex', color="#c8ffc8") #define abreviação e cores para personagem
-default menuset = set()
+
 # The game starts here.
 
 label start:
@@ -297,7 +292,7 @@ label start:
 menu: 
     
     "Explorar esta área da sala":
-        call screen salaEstar
+        call screen livingRoom
 
     "Checar área à esquerda":
         jump salaSaida
@@ -306,7 +301,8 @@ menu:
         jump exitGame
 
  
-screen salaEstar():
+# Sala de estar
+screen livingRoom():
     add "Cenários/bg entrada1.png"
     imagebutton:
         idle "Cenários/Sala/bg planta vazio.png"
@@ -332,7 +328,7 @@ label plant:
     show alex pensativa at left
     "Alex" "Ela é uma planta venenosa, eu acho."
     hide alex pensativa
-    call screen salaEstar
+    call screen livingRoom
     
 label capybara:
     show alex surpresa at left
@@ -340,7 +336,7 @@ label capybara:
     show alex incomodada at left
     "Alex" "HM, quer dizer, é apenas uma pelúcia de capivara..."
     hide alex incomodada
-    call screen salaEstar
+    call screen livingRoom
 
 label cacti:
     show alex neutra at left
@@ -349,7 +345,7 @@ label cacti:
     "Alex" "Acho que são mandacarus... "
     "Alex" "De qualquer jeito, não tem como subir por aqui!"
     hide alex pensativa
-    call screen salaEstar
+    call screen livingRoom
 
 label salaSaida:
     hide window
@@ -375,101 +371,6 @@ label salaSaida:
     "Ao abrir a porta, as luzes, como na sala anterior, também estavam desligadas."
     "Mas não demorou muito tempo para que as luzes daquele cômodo começassem a se ligar aos poucos, como se a própria casa estivesse acordando de um sono profundo... "
     
-    with fade
-    scene bg corredor
-    "Quando as luzes se acendem, o cômodo se acorda e o ambiente se torna mais claro."
-    "Alex se aproxima da porta e entra na sala."
-    with fade
-    scene bg sala1 itens
-    "Ao entrar na sala, Alex observa que não há nada além de plantas ocupando todo o espaço da sala."
-    "Curiosa, Alex então decide explorar a sala."
-    call screen escritorio
-
-label plantaMorta:
-    if (explorarSamambaia and explorarArvoreNatal and explorarBonsai and explorarMusgo):
-        scene bg sala1 vazio
-    show alex incomodada at left
-    "Alex" "Tem uma planta morta do lado da cômoda."
-    show alex pensativa at left
-    "Alex" "Vou deixar ela lá, porque não sei o que fazer com ela..."
-    hide alex pensativa
-    call screen escritorio
-
-label samambaia:
-    show alex incomodada at left
-    "Alex" "A estante está cheia de livros"
-    show alex pensativa at left
-    "Alex" "Talvez eu possa encontrar algo interessante..."
-    show alex neutra at left
-    "Alex" "Olha só, há uma samambaia, é uma planta bonita porém não tem flores."
-    $ explorarSamambaia = True
-    call screen escritorio
-
-label arvoreNatal:
-    show alex confiante at left
-    "Alex" "Tem alguma coisa na lixeira..."
-    show alex neutra at left
-    "Alex" "Uma arvore natal!"
-    show alex pensativa at left
-    "Alex" "Os pinheiros são do grupo das gimnospérmicas, eu acho."
-    $ explorarArvoreNatal = True
-    call screen escritorio
-
-label bonsai:
-    show alex surpresa at left
-    "Alex" "Não acredito que há um bonsai na cômoda, uma das minhas plantas favoritas!"
-    show alex neutra at left
-    "Alex" "Eu já tive um, mas não sabia cuidar e meu bonsai morreu encharcado."
-    show alex confiante at left
-    "Alex" "Se eu roubar esse dai pra mim ninguém vai saber..."
-    $ explorarBonsai = True
-    call screen escritorio
-
-label musgo:
-    show alex pensativa at left
-    "Alex" "No quadro há uma foto de um musgo, eu acho."
-    show alex neutra at left
-    "Alex" "Eu não sei por que há um foto disso aqui..."
-    show alex pensativa at left
-    "Alex" "Em baixo do quadro há um texto escrito"
-    show alex neutra at left
-    "Alex" "'Musgo são plantas muito comuns na natureza, fazem parte do grupo das briófitas.'"
-    show alex neutra at left
-    "Alex" "Eu não sei se isso é verdade, mas eu acredito que é verdade."
-    $ explorarMusgo = True
-    call screen escritorio
-
-screen escritorio():
-    if (explorarSamambaia and explorarArvoreNatal and explorarBonsai and explorarMusgo):
-        add "Cenários/Sala número 1/bg sala1 vazio.png"
-    else:
-        add "Cenários/Sala número 1/bg sala1 itens.png"
-        imagebutton:
-            idle "Cenários/Sala número 1/itens/bg sala1 samambaia vazio.png"
-            hover "Cenários/Sala número 1/itens/bg sala1 samambaia.png"
-            action Jump('samambaia')
-            xpos 127 ypos 405
-        imagebutton:
-            idle "Cenários/Sala número 1/itens/bg sala1 arvore natal vazio.png"
-            hover "Cenários/Sala número 1/itens/bg sala1 arvore natal.png"
-            action Jump('arvoreNatal')
-            xpos 474 ypos 294
-        imagebutton:
-            idle "Cenários/Sala número 1/itens/bg sala1 bonsai vazio.png"
-            hover "Cenários/Sala número 1/itens/bg sala1 bonsai.png"
-            action Jump('bonsai')
-            xpos 765 ypos 190
-        imagebutton:
-            idle "Cenários/Sala número 1/itens/bg sala1 musgo vazio.png"
-            hover "Cenários/Sala número 1/itens/bg sala1 musgo.png"
-            action Jump('musgo')
-            xpos 626 ypos 36
-    imagebutton:
-        idle "Cenários/Sala número 1/itens/bg sala1 planta morta vazio.png"
-        hover "Cenários/Sala número 1/itens/bg sala1 planta morta.png"
-        action Jump('plantaMorta')
-        xpos 886 ypos 137
-
 
 label exitGame:
-    return
+     return
