@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 382: expected statement.
-    ShowMenu('save')
-                    ^
+File "game/script.rpy", line 441: u'hide' is not a keyword argument or valid child for the screen statement.
+    hide "Cenários/Sala número 1/bg sala1 itens.png"
+        ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266u
-Mon Jul 18 23:14:47 2022
+Tue Jul 19 01:24:30 2022
