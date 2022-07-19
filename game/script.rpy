@@ -837,6 +837,174 @@ label escritorioAcerto_G: #resposta certa! mudança de cenário
     "Alex" "Angiosperma, Briófita, Gimnosperma e Pteridófita!"
     show alex incomodada at left 
     "Alex" "São tantos nomes difíceis para poucas plantas... Que mundo cruel."
+    hide alex incomodada
+    " *BLAM* "
+    hide window 
+    scene bg sala2 aberto #abre a porta que tava lá atrás!
+    with hpunch 
+    pause 
 
+    show alex surpresa at left 
+    with vpunch
+    "Alex" "AI MEU DEUS DO CÉU O QUE EU FIZ DESSA VEZ?!"
+    "Alex" "..."
+    "Alex" "... ué?"
+    hide alex surpresa
+
+    "- Porta destrancada -"
+    "A passagem do fundo da sala que anteriormente estava fechada abre no momento em que todas as peças voltaram a seus respectivos lugares."
+    "Assim, liberando a saída desta sala..."
+
+    show alex incomodada at left 
+    "Alex" "Eita, era apenas a porta abrindo..."
+    show alex neutra at left 
+    "Alex" "Bem, este é o único outro caminho, então eu devo estar perto da saída."
+    hide alex neutra
+
+    scene bg padrao #eu não vou desenhar um lance de escadas isso fica para a imaginação x_x escada imaginária
+    with fade 
+    "Passando pela porta, Alex se depara com um longo lance de escadas, semelhante ao que deveria ter encontrado na primeira sala- "
+    "Se não fosse pelos cactos que tomaram conta do local."
+    "Alex continua subindo os degraus correndo, até que chega em uma nova sala."
+    "Na qual as luzes acendem imediatamente no momento em que ela botou seus pés lá"
+
+    hide window 
+    scene bg sala3 fechado
+    with fade
+    pause
+    show alex incomodada at left 
+    with vpunch 
+    "Alex" "De novo?! OUTRA porta?!"
+    show alex neutra at left 
+    "Alex" "Espera..."
+    hide alex neutra 
+
+    "Alex aproxima-se com cuidado da porta desta sala, percebendo que ao lado dela existe uma espécie de dispositivo."
+    
+    show alex pensativa at left 
+    "Alex" "Talvez eu precise colocar algum código aqui?... Melhor procurar por alguma dica aqui."
+
+label finalExplorar: #aqui é o menu de interação de explorar essa última sala YAY!!!!!!!!!!!!!!!
+    hide window 
+    scene bg sala3 fechado
+    with fade 
+    pause 
+    show alex neutra at left 
+    with dissolve
+    "Alex" "Para onde eu vou agora... ?"
+    hide alex neutra 
+
+menu: 
+    "Checar anotação na parede":
+        "Alex se aproxima da anotação da parede, afastando um pouco as folhas da planta que estava na frente do cartaz para poder lê-lo melhor."
+        show alex neutra at left 
+        "Alex" "Oxe? São letras? 'B' = 5, 'P' = 6, 'A' = 1 e 'G' = 3... ?"
+        show alex pensativa at left 
+        "Alex" "Onde é que eu vi algo parecido com isso? Parece que é a senha de algum tipo de código."
+        hide alex pensativa
+        jump finalExplorar
+
+    "Checar dispositivo da porta":
+        show alex pensativa at left 
+        "Alex" "Hmm, olhando de perto realmente parece que eu preciso colocar algum código aqui para abrir esta porta."
+        "Alex" "E deve ser algo relacionado com este papel do lado da porta..."
+        show alex incomodada at left 
+        with hpunch 
+        "Alex" "NOSSA, quem é que projetou esse lugar?! Ter tantas coisas trancando as portas não parece nada prático!"
+        show alex neutra at left 
+        "Alex" "Imagina só toda vez que você precisar ir na cozinha precisar resolver uma adivinha... Trágico."
+        jump finalExplorar
+
+    "Checar quadros da parede":
+        show alex surpresa at left 
+        with vpunch 
+        "Alex" "MEU DEUS!"
+        "Alex" "O que é isso no canto esquerdo da parede?!"
+        "Alex" "É um... chocossauro?! Daquele jogo famoso..."
+        show alex neutra at left 
+        "Alex" "fantasia final... "
+        show alex incomodada at left 
+        "Alex" "Bem, olhando melhor, isso não é um chocossauro, é apenas uma galinha..."
+        show alex pensativa at left 
+        "Alex" "E também outros desenhos de esqueletos de animais, incluindo dinossauros..."
+        "Alex" "A semelhança entre suas ossadas parece ser uma observação bastante legal!"
+        show alex confiante at left 
+        "Alex" "Meus pais vivem dizendo que as galinhas são como dinossauros dos tempos atuais."
+        jump finalExplorar
+
+    "Inserir código no dispositivo":
+        show alex confiante at left 
+        with hpunch 
+        "Alex" "Certo, agora conseguirei sair de uma vez por todas!"
+        jump sairDaqui
+
+label sairDaqui:
+    hide window 
+    scene bg sala3 fechado
+    with fade 
+    pause 
+    show alex pensativa at left 
+    with dissolve 
+    "Alex" "..."
+    "Alex" "Minha gente, o que eu ia botar no código mesmo... ?"
+
+menu:
+    "Digitar 5613":
+        "Alex seleciona os dígitos 5, 6, 1 e 3 no dispositivo."
+        jump sairErro
+
+    "Digitar 1536":
+        "Alex seleciona os dígitos 1, 5, 3 e 6 no dispositivo."
+        show alex neutra at left 
+        "Alex" "Por favor que essa seja a senha certa... !"
+        jump sairSucesso
+
+    "Digitar 3615":
+        "Alex seleciona os dígitos 3, 6, 1 e 5 no dispositivo."
+        jump sairErro
+
+    "Digitar 6351":
+        "Alex seleciona os dígitos 6, 3, 5 e 1 no dispositivo."
+        jump sairErro
+
+label sairErro:
+    hide window 
+    scene bg sala3 fechado
+    with vpunch
+    pause 
+    show alex surpresa at left 
+    "Alex" "Ué?"
+    "Alex" "Parece que eu esqueci de alguma coisa... A anotação diz que 'B' = 5, 'P' = 6, 'A' = 1 e 'G' = 3."
+    show alex pensativa at left 
+    with dissolve 
+    "Alex" "Será que eu coloquei os números na ordem errada?"
+    "Alex" "Talvez isso ainda esteja se referindo às plantas da sala anterior... "
+    "Alex" "Eu lembro que começava com uma planta Angiosperma... e a última me lembrava um dinossauro voador."
+    jump sairDaqui
+
+label sairSucesso:
+    hide window
+    scene bg sala3 aberto 
+    with vpunch 
+    pause 
+    show alex surpresa at left 
+    with vpunch 
+    "Alex" "EITA!"
+    "Alex" "Parece que abriu?! É verdade, senhoras e senhores?"
+    show alex confiante at left 
+    "Alex" "Ha, só há um jeito de descobrir!"
+    hide alex confiante
+
+    scene bg sala3 aberto
+    with hpunch
+    "Cheia de confiança e coragem, Alex coloca a mão na maçaneta da porta para a abrir e seguir para o que o destino tiver guardado para ela em sua jornada..."
+ 
 label exitGame:
+    hide window
+    scene bg padrao 
+    with fade
+    pause 
+    "Bem... Parece que encontramos a saída da DEMO de Mansão Macambira... !"
+    "Até logo, agradecemos por sua atenção ^_^"
+    "Tchauzinho"
     return
