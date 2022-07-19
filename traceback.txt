@@ -1,0 +1,40 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "renpy/common/00keymap.rpy", line 469, in script
+    python hide:
+  File "renpy/common/00keymap.rpy", line 469, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 488, in _execute_python_hide
+    renpy.save("_reload-1", "reload save game")
+IOError: [Errno 2] No such file or directory: '/home/danifeliz/.renpy/MansaoMacambira-1656964181/_reload-1-LT1.save'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "renpy/common/00keymap.rpy", line 469, in script
+    python hide:
+  File "/usr/share/renpy/renpy/ast.py", line 928, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "/usr/share/renpy/renpy/python.py", line 2245, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/00keymap.rpy", line 469, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 488, in _execute_python_hide
+    renpy.save("_reload-1", "reload save game")
+  File "/usr/share/renpy/renpy/loadsave.py", line 435, in save
+    location.save(slotname, sr)
+  File "/usr/share/renpy/renpy/savelocation.py", line 431, in save
+    l.save(slotname, record)
+  File "/usr/share/renpy/renpy/savelocation.py", line 161, in save
+    record.write_file(filename)
+  File "/usr/share/renpy/renpy/loadsave.py", line 347, in write_file
+    shutil.copyfile(self.first_filename, filename_new)
+  File "/usr/lib/python2.7/shutil.py", line 96, in copyfile
+    with open(src, 'rb') as fsrc:
+IOError: [Errno 2] No such file or directory: '/home/danifeliz/.renpy/MansaoMacambira-1656964181/_reload-1-LT1.save'
+
+Linux-5.18.9-zen1-1-zen-x86_64-with-glibc2.2.5
+Ren'Py 7.4.11.2266u
+Mansao Macambira 1.0
+Mon Jul 18 23:20:14 2022
