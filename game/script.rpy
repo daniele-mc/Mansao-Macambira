@@ -1,10 +1,16 @@
+
+init python:
+    explorarSamambaia = False
+    explorarArvoreNatal = False
+    explorarBonsai = False
+    explorarMusgo = False
 # The script of the game goes in this file.
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
 define a = Character('Alex', color="#c8ffc8") #define abreviação e cores para personagem
-
+default menuset = set()
 # The game starts here.
 
 label start:
@@ -289,20 +295,18 @@ label start:
 
     "E agora?"
 
-menu: 
+menu: #menu do primeiro ambiente do jogo para decidir se você vai explorar ou ir para algum lado
     
     "Explorar esta área da sala":
-        call screen livingRoom
+        call screen salaEstar
 
     "Checar área à esquerda":
+        show alex pensativa at left 
+        "Alex" "Vejamos, agora que eu tenho esta chave, acho que só existe um lugar onde isso poderia ir, né?"
         jump salaSaida
 
-    "Sair do jogo":
-        jump exitGame
 
- 
-# Sala de estar
-screen livingRoom():
+screen salaEstar():
     add "Cenários/bg entrada1.png"
     imagebutton:
         idle "Cenários/Sala/bg planta vazio.png"
@@ -328,7 +332,7 @@ label plant:
     show alex pensativa at left
     "Alex" "Ela é uma planta venenosa, eu acho."
     hide alex pensativa
-    call screen livingRoom
+    call screen salaEstar
     
 label capybara:
     show alex surpresa at left
@@ -336,7 +340,7 @@ label capybara:
     show alex incomodada at left
     "Alex" "HM, quer dizer, é apenas uma pelúcia de capivara..."
     hide alex incomodada
-    call screen livingRoom
+    call screen salaEstar
 
 label cacti:
     show alex neutra at left
@@ -345,7 +349,7 @@ label cacti:
     "Alex" "Acho que são mandacarus... "
     "Alex" "De qualquer jeito, não tem como subir por aqui!"
     hide alex pensativa
-    call screen livingRoom
+    call screen salaEstar
 
 label salaSaida:
     hide window
@@ -371,6 +375,229 @@ label salaSaida:
     "Ao abrir a porta, as luzes, como na sala anterior, também estavam desligadas."
     "Mas não demorou muito tempo para que as luzes daquele cômodo começassem a se ligar aos poucos, como se a própria casa estivesse acordando de um sono profundo... "
     
+    scene bg corredor
+    with fade 
+    "Quando as luzes se acendem, o cômodo ilumina-se e o ambiente se torna mais claro."
+    "Alex se aproxima da porta e entra na sala..."
+
+    show alex neutra at left 
+    "Alex" "Só tem uma direção para ir..."
+    hide alex neutra 
+
+    scene bg sala1 itens
+    with fade
+    "Ao entrar no cômodo, Alex observa que não há nada além de plantas ocupando todo o espaço da sala."
+    "Curiosa, Alex então decide começar a explorar este ambiente."
+    call screen escritorio
+
+label plantaMorta:
+    if (explorarSamambaia and explorarArvoreNatal and explorarBonsai and explorarMusgo):
+        scene bg sala1 vazio #vou colocar o menu aqui para opções extra (?) de interação com objetos, talvez algo de estante
+        jump escritorioExplorar_1
+    show alex incomodada at left
+    "Alex" "Tem uma planta morta do lado da cômoda."
+    show alex pensativa at left
+    "Alex" "Vou deixar ela lá, porque não sei o que fazer com ela..."
+    hide alex pensativa
+    call screen escritorio
+
+label samambaia:
+    show alex incomodada at left
+    "Alex" "A estante está cheia de livros."
+    show alex pensativa at left
+    "Alex" "Talvez eu possa encontrar algo interessante..."
+    show alex neutra at left
+    "Alex" "Olha só, há uma samambaia,"
+    show alex pensativa at left 
+    "Alex" "eu acho que ela é uma planta bonita com folhas legais, porém não tem flores."
+    hide alex pensativa
+    show item samambaiaobjeto
+    "Alex pegou a planta que encontrou na estante e a guardou em sua bolsa. Samambaia adicionada ao inventário!"
+    hide item samambaiaobjeto
+    $ explorarSamambaia = True
+    call screen escritorio
+
+label arvoreNatal:
+    show alex confiante at left
+    "Alex" "Hã? Tem alguma coisa na lixeira... !"
+    show alex neutra at left
+    "Alex" "Uma arvore natal!"
+    show alex incomodada at left 
+    "Alex" "Acho que alguém aqui não ganhou o que queria de presente de natal."
+    show alex pensativa at left
+    "Alex" "Enfim, os pinheiros são do grupo das plantas gimnospermas, eu acho..."
+    hide alex pensativa
+    "...Alex pensa um pouco antes de pegar isso diretamente da lixeira."
+    show item arvorenatalobjeto #botando "with dissolve" para mostrar que ela não queria muito tirar algo do lixo KKKKK
+    with dissolve
+    "Alex tirou cuidadosamente a árvore de plástico da lixeira (eca)."
+    "O espírito natalino agora pode ser encontrado no seu inventário! Hohoho"
+    hide item arvorenatalobjeto
+
+    $ explorarArvoreNatal = True
+    call screen escritorio
+
+label bonsai:
+    show alex surpresa at left
+    with vpunch
+    "Alex" "AI"
+    "Alex" "MEU"
+    "Alex" "DEUS!"
+    "Alex" "Não acredito que há um bonsai na cômoda, uma das minhas plantas favoritas!"
+    show alex neutra at left
+    "Alex" "..."
+    "Alex" "Eu já tive um, mas- "
+    show alex incomodada at left 
+    "Alex" "Não sabia cuidar e meu bonsai morreu encharcado. Descanse em paz, Godofredo Júnior Terceiro..."
+    show alex confiante at left
+    "Alex" "Bem, se eu roubar esse daí pra mim ninguém vai saber!"
+    hide alex confiante 
+    show item bonsaiobjeto 
+    "Depois de olhar em sua volta para ter certeza que ninguém ia ver, Alex pega a planta emprestado e bota em sua bolsa."
+    "Bonsai foi adicionado ao inventário! Com muita sorte, este também não irá morrer encharcado... Pobre Godofredo."
+    hide item bonsaiobjeto
+
+    $ explorarBonsai = True
+    call screen escritorio
+
+label musgo:
+    show alex pensativa at left
+    "Alex" "No quadro há uma foto de um musgo, eu acho."
+    show alex neutra at left
+    "Alex" "Eu não sei por que há um foto disso aqui... Quem colocaria uma foto dessas em um quadro?"
+    show alex pensativa at left
+    "Alex" "Hm, parece que embaixo tem algum tipo de texto escrito."
+    "Alex" "'Musgo são plantas muito comuns na natureza, as quais são avasculares, fazem parte do grupo das briófitas.'"
+    show alex neutra at left
+    "Alex" "Eu não sei se isso é verdade, mas se está escrito aqui deve ser verdade, né? hmm..."
+    hide alex neutra 
+    show item musgoobjeto
+    "Alex retira a foto de musgo do mural e coloca em sua bolsa, com cuidado para não amassar."
+    "A foto de musgo redondo adicionada ao inventário!"
+    hide item musgoobjeto
+    $ explorarMusgo = True
+    call screen escritorio
+
+screen escritorio():
+    if (explorarSamambaia and explorarArvoreNatal and explorarBonsai and explorarMusgo):
+        add "Cenários/Sala número 1/bg sala1 vazio.png"
+    else:
+        add "Cenários/Sala número 1/bg sala1 itens.png"
+        imagebutton:
+            idle "Cenários/Sala número 1/itens/bg sala1 samambaia vazio.png"
+            hover "Cenários/Sala número 1/itens/bg sala1 samambaia.png"
+            action Jump('samambaia')
+            xpos 127 ypos 405
+        imagebutton:
+            idle "Cenários/Sala número 1/itens/bg sala1 arvore natal vazio.png"
+            hover "Cenários/Sala número 1/itens/bg sala1 arvore natal.png"
+            action Jump('arvoreNatal')
+            xpos 474 ypos 294
+        imagebutton:
+            idle "Cenários/Sala número 1/itens/bg sala1 bonsai vazio.png"
+            hover "Cenários/Sala número 1/itens/bg sala1 bonsai.png"
+            action Jump('bonsai')
+            xpos 765 ypos 190
+        imagebutton:
+            idle "Cenários/Sala número 1/itens/bg sala1 musgo vazio.png"
+            hover "Cenários/Sala número 1/itens/bg sala1 musgo.png"
+            action Jump('musgo')
+            xpos 626 ypos 36
+    imagebutton:
+        idle "Cenários/Sala número 1/itens/bg sala1 planta morta vazio.png"
+        hover "Cenários/Sala número 1/itens/bg sala1 planta morta.png"
+        action Jump('plantaMorta')
+        xpos 886 ypos 137
+
+label escritorioExplorar_1:
+    scene bg sala1 vazio 
+    hide window
+    show alex neutra at left 
+    "Alex" "Ai ai, acho que não consigo carregar mais do que isso..."
+    show alex incomodada at left 
+    "Alex" "Por que foi que eu decidi sair colocando todas essas plantas na minha bolsa?!"
+    show alex pensativa at left 
+
+label escritorioExplorando_1:
+    scene bg sala1 vazio
+    show alex pensativa at left
+    with dissolve
+    "Alex" "..."
+    "Alex" "Enfim... O que mais temos para ver por aqui?"
+    #menu de exploração dessa área específica, alex pensando no que fazer da vida vamos torcer para dar certo
+
+menu: #menu que é mencionado acima uhu
+    "Checar a estante novamente": #textos lendo a estante
+        hide alex pensativa
+        window hide #criar uma pausa para a transição
+        pause
+        show alex neutra at left
+        with dissolve
+        "Alex" "Nossa, parando para ver melhor essa estante tem vários livros relacionados à Biologia."
+        "Alex" "Vou abrir um para ler, vai que tem algo sobre como as plantas daqui ficaram estranhas."
+        show alex pensativa at left 
+        "Alex" "Aqui tem um glossário de plantas dos mais variados níveis de complexidade..."
+        "Alex" "indo de plantas sem estruturas vasculares até plantas capazes de produzir flores e frutos como as angiospermas..."
+        "Alex" "Interessante."
+        show alex incomodada at left
+        with vpunch 
+        "Alex" "Espera, eca! Acabei de perceber o quão velhos esses livros devem estar, esta estante está cheia de traças e insetos."
+        "Alex" "... Acho que eu me distraí um pouco lendo tudo isso."
+        hide alex incomodada
+        jump escritorioExplorando_1
+
+    "Checar bancada com o aquário vazio.": #textos dela interagindo com a bancada onde tem o aquário
+        hide alex pensativa
+        window hide #para dar uma pausa no diálogo e criar alguma transição não sei
+        pause
+        show alex neutra at left
+        with dissolve
+        "Alex" "Esse aquário parece bastante velho e desgastado, até o vidro ficou fosco com o tempo. Talvez isso fosse um tipo de terrário para musgos?"
+        show alex pensativa at left 
+        "Alex" "Há quanto tempo será que essa mansão está trancada sem ninguém por perto?"
+        "Alex" "Mesmo assim, aquele bonsai arranjou uma forma de sobreviver com essa luzinha..."
+        "Alex" "Talvez ele fosse parte de alguma pesquisa para manutenção de plantas, conseguiu até crescer uma frutinha."
+        hide alex pensativa
+        jump escritorioExplorando_1
+
+    "Checar mural com desenhos de plantas à direita": #checando o muralzinho legal
+        hide alex pensativa
+        window hide 
+        pause 
+        show alex neutra at left 
+        with dissolve 
+        "Alex" "Aqui diz 'ciclo de vida de uma planta A'"
+        show alex pensativa at left 
+        "Alex" "Pela sequência, parece que essas figuras estão mostrando a vida de uma planta que possui frutos"
+        "Alex" "Ela tem vasos e um caule para se sustentar, e depois consegue produzir flores e frutas..."
+        show alex neutra at left 
+        "Alex" "Parece com algo que eu encontraria no fundo da sala de aula. Meigo."
+        hide alex neutra 
+        jump escritorioExplorando_1
+
+    "Checar a próxima parede": #pula para a próxima etapa 
+        jump excritorioExplorar_2
+
+    "Voltar para o corredor anterior": #opção de tentar voltar, mas você meio que não tem motivo para voltar
+        show alex incomodada at left 
+        with vpunch
+        "Alex" "Ué, no que eu estou pensando? Não tem nada para checar naquele corredor"
+        jump escritorioExplorando_1
+
+label excritorioExplorar_2: 
+    scene bg sala2 padrao
+    hide window 
+    with fade 
+    pause 
+
+    "Ao percorrer um pouco mais esse cômodo, Alex se depara com outro cenário que logo chama a sua atenção pela presença de uma planta familiar."
+
+    show alex surpresa at left 
+    "Alex" "UAU, esses são os mesmos cactos lá do início...?"
+    show alex pensativa at left 
+    "Alex" "Então significa que esta sala dá uma volta por trás daquela outra?"
+    show alex neutra at left 
+    "Alex" "Não fazia ideia que isso poderia acontecer, talvez as plantas daqui sejam diferentes por causa de algum químico que deixou esses mandacarus mais fortes..."
 
 label exitGame:
-     return
+    return
