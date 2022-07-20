@@ -1,5 +1,9 @@
 
 init python:
+    explorarPlanta = False
+    explorarCapivara = False
+    explorarCactos = False
+
     explorarSamambaia = False
     explorarArvoreNatal = False
     explorarBonsai = False
@@ -311,20 +315,26 @@ screen salaEstar():
     imagebutton:
         idle "Cenários/Sala/bg planta vazio.png"
         hover "Cenários/Sala/bg planta.png"
-        action Jump('plant')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+        action Jump('planta')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         xpos 109 ypos 56
     imagebutton:
         idle "Cenários/Sala/bg capivara vazio.png"
         hover "Cenários/Sala/bg capivara.png"
-        action Jump('capybara')
+        action Jump('capivara')
         xpos 949 ypos 568
     imagebutton:
         idle "Cenários/Sala/bg cactos vazio.png"
         hover "Cenários/Sala/bg cactos.png"
-        action Jump('cacti')
+        action Jump('cacto')
         xpos 500 ypos 0
+    imagebutton:
+        idle "UI/Abrir mapa.png"
+        hover "UI/Abrir mapa.png"
+        action Jump('mapa')
+        xpos 20 ypos 20
     
-label plant:
+label planta:
+    $ explorarPlanta = True
     show alex confiante at left
     "Alex" "Aha! Comigo ninguém pode!..."
     show alex neutra at left
@@ -332,24 +342,77 @@ label plant:
     show alex pensativa at left
     "Alex" "Ela é uma planta venenosa, eu acho."
     hide alex pensativa
-    call screen salaEstar
+    if (explorarPlanta and explorarCapivara and explorarCacto):
+        menu:
     
-label capybara:
+            "Explorar esta área da sala":
+                call screen salaEstar
+
+            "Checar área à esquerda":
+                show alex pensativa at left 
+                "Alex" "Vejamos, agora que eu tenho esta chave, acho que só existe um lugar onde isso poderia ir, né?"
+                jump salaSaida
+    else:
+        call screen salaEstar
+    
+label capivara:
+    $ explorarCapivara = True
     show alex surpresa at left
     "Alex" "Ah, olha só! É uma Hydrochoerus hydrochaeris!..."
     show alex incomodada at left
     "Alex" "HM, quer dizer, é apenas uma pelúcia de capivara..."
     hide alex incomodada
-    call screen salaEstar
+    if (explorarPlanta and explorarCapivara and explorarCacto):
+        menu:
+    
+            "Explorar esta área da sala":
+                call screen salaEstar
 
-label cacti:
+            "Checar área à esquerda":
+                show alex pensativa at left 
+                "Alex" "Vejamos, agora que eu tenho esta chave, acho que só existe um lugar onde isso poderia ir, né?"
+                jump salaSaida
+    else:
+        call screen salaEstar
+
+label cacto:
+    $ explorarCacto = True
     show alex neutra at left
     "Alex" "A escada está quebrada e ainda tem esses- "
     show alex pensativa at left
     "Alex" "Acho que são mandacarus... "
     "Alex" "De qualquer jeito, não tem como subir por aqui!"
     hide alex pensativa
+    if (explorarPlanta and explorarCapivara and explorarCacto):
+        menu:
+    
+            "Explorar esta área da sala":
+                call screen salaEstar
+
+            "Checar área à esquerda":
+                show alex pensativa at left 
+                "Alex" "Vejamos, agora que eu tenho esta chave, acho que só existe um lugar onde isso poderia ir, né?"
+                jump salaSaida
+    else:
+        call screen salaEstar
+
+label mapa:
+    show bg entrada1
+    show mapa salaentrada
+    call screen mapaSalaEstar
+
+label voltar:
+    hide mapa salaentrada
+    show bg entrada1
     call screen salaEstar
+
+screen mapaSalaEstar():
+    add "mapa salaentrada.png"
+    imagebutton:
+        idle "UI/Sair mapa.png"
+        hover "UI/Sair mapa.png"
+        action Jump('voltar')
+        xpos 20 ypos 20
 
 label salaSaida:
     hide window
