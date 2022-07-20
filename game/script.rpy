@@ -2,7 +2,7 @@
 init python:
     explorarPlanta = False
     explorarCapivara = False
-    explorarCactos = False
+    explorarCacto = False
 
     explorarSamambaia = False
     explorarArvoreNatal = False
